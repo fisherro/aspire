@@ -1,5 +1,9 @@
 # Aspire programming language specification
 
+TODO: Examples throughout
+
+QUESTION: Could this be summarized as "Kernel plus macros, reader extensions, and RRB trees"?
+
 This is a specification for a language that aspires to be my ideal language.
 
 It seeks to follow the ideal espoused by the Scheme reports. To quote R3RS:
@@ -34,6 +38,8 @@ Note that closures are not exclusively evaluated at run-time. An implementation 
 
 Continuations provide the ability to implement powerful control mechanisms such as exceptions, coroutines, and coöperative multitasking as libraries. Delimited continuations address issues with undelimited continuations and provide composability so that different continuation-based mechanisms play well together.
 
+Reader extensions are considered primary in order to not tie the language to a specific syntax. Syntax has a large impact on programmer productivity. Programmers should be able to build and choose syntax appropriate to themselves, their team, and their project. Customizing syntax also makes the language more flexible for implementing DSLs.
+
 ## Secondary features
 
 Features which required for the primary features but which have applications beyond that.
@@ -42,7 +48,10 @@ Features which required for the primary features but which have applications bey
   - Required for the operative/applicative approach
 - First class environments
   - Required for the operative/applicative approach
+- Symbols
+  - Required for environments which map symbols to values
 - Syntax objects
+  - Provides a value (such as a symbol) with lexical information and source-location for a value
   - Necessary to enable hygienic syntax manipulations
 - Strings
   - Required for reader extensions
@@ -60,19 +69,26 @@ These are features that could conceptually be implemented using the primary feat
   - Possibly `==` for cross-type numeric comparisons
 - I/O primitives
 - Concurrency primitives
+- Booleans
+- Hash maps
+  - Environments are typically implemented using hash maps internally. Since the implementation likely already contains a hash map implementation, it makes sense to expose it.
 
 ## Quaternary features
 
 If these can be efficiently implemented as libraries, they do not need to be built-in features.
 
-- Gradual static typing
-- Generic functions
+- Error/exceptions
 - Pattern matching
+- Generic functions
 - Modules
+  - First-class environments, macros, and compile-time I/O should make modules implementable as a library.
+  - There may be a need for some minimal module-like functionality for bootstrapping.
+  - Implementation experience will determine whether this should be promoted to a tertiary feature.
+- Gradual static typing
 
 ## Syntax
 
-(Note: "Syntax" feels like it has too wide a meaning here. Perhaps this section should cover the `(combiner operands ...)` aspect to fully cover syntax?)
+(TODO: "Syntax" feels like it has too wide a meaning here. Perhaps this section should cover the `(combiner operands ...)` aspect to fully cover syntax?)
 
 The basic syntax will be S-expression based. Although the point or reader extensions is to enable support for other syntaxes.
 

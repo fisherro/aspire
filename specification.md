@@ -38,7 +38,7 @@ Note that closures are not exclusively evaluated at run-time. An implementation 
 
 Continuations provide the ability to implement powerful control mechanisms such as exceptions, coroutines, and coöperative multitasking as libraries. Delimited continuations address issues with undelimited continuations and provide composability so that different continuation-based mechanisms play well together.
 
-Reader extensions are considered primary in order to not tie the language to a specific syntax. Syntax has a large impact on programmer productivity. Programmers should be able to build and choose syntax appropriate to themselves, their team, and their project. Customizing syntax also makes the language more flexible for implementing DSLs.
+Any list of the disadvantages of Lisp lists the S-expression syntax. S-expressions are a practical choice for the native syntax of the language, but Aspire should enable alternative syntaxes to be as close to native as possible. Thus, reader extensions are provided as a primary feature.
 
 ## Secondary features
 
@@ -90,7 +90,7 @@ If these can be efficiently implemented as libraries, they do not need to be bui
 
 (TODO: "Syntax" feels like it has too wide a meaning here. Perhaps this section should cover the `(combiner operands ...)` aspect to fully cover syntax?)
 
-The basic syntax will be S-expression based. Although the point or reader extensions is to enable support for other syntaxes.
+The native syntax will be S-expression based. Although the point or reader extensions is to enable support for other syntaxes to make them as close to native as possible.
 
 ## Phases
 

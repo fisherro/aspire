@@ -25,6 +25,7 @@ These are the "big ideas" of the language. The small set of powerful features th
 - Reader extensions: Read-time abstraction
   - Closures that take strings and return objects that have been designated for use as reader extensions.
 - Delimited continuations: Composable framework for control mechanisms
+- Foreign Function Interface: Provides a single mechanism to access host system functionality that would otherwise need to be built-in
 
 A single abstraction method, closures, is provided along with mechanisms to use it at read-time, compile-time, and run-time.
 
@@ -76,6 +77,10 @@ These are features that could conceptually be implemented using the primary feat
 - Booleans
 - Hash maps
   - Environments are typically implemented using hash maps internally. Since the implementation likely already contains a hash map implementation, it makes sense to expose it.
+
+TODO: Add justifications
+
+TODO: Replace I/O and concurrency with FFI or explain why they aren't.
 
 ## Quaternary features
 

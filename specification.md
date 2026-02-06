@@ -53,6 +53,11 @@ Features which required for the primary features but which have applications bey
 - Syntax objects
   - Provides a value (such as a symbol) with lexical information and source-location for a value
   - Necessary to enable hygienic syntax manipulations
+- Persistent List-like Data (PLD)
+  - The native data structure akin to lists in Lisp.
+  - More friendly to modern computers than singly-linked lists.
+  - Required to represent compound objects such as syntax objects.
+  - Most likely implemented as RRB trees.
 - Strings
   - Required for reader extensions
 
@@ -60,7 +65,6 @@ Features which required for the primary features but which have applications bey
 
 These are features that could conceptually be implemented using the primary features but which would be too inefficient or otherwise impractical.
 
-- Persistent List-like Data (PLD): These will be the basic data structure in the same way that lists are the basic data structure in Lisp. (Most likely RRB trees)
 - Numbers and arithmetic using a Scheme-like numerical tower
 - Equality
   - Follow the Clojure model...

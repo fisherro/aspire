@@ -2,6 +2,19 @@
 
 This document servers as a to-do list and topics of concerns to consider and a place to consider them.
 
+## TODOs
+
+- Example of where an operative is justified instead of a macro
+- Scoping
+- Latent typing?
+- Object lifetimes
+- TCO
+- Pass by value
+- Limited mutation (binding symbols to values in an environment plus special rebindable "boxes")
+- S-expression syntax as the base
+- First class environments allow operatives to be statically scope while having access to their dynamic environment
+- "Combiners" instead of "closures"? Are Kernel operatives closures?
+
 ## Macros
 
 Macros allow run time abstractions to be run at compile time.
@@ -80,3 +93,58 @@ Could possibly be collapsed to...
 6. Reduce secondary features by moving more to tertiary
 7. Add syntax examples to make the specification more concrete
 8. Consider implementation feasibility—which features genuinely compose vs. which need deep integration?
+
+----
+
+## Strengths
+
+**Clear hierarchical organization**: The primary through quaternary categorization effectively communicates implementation priorities and design philosophy.
+
+**Strong philosophical foundation**: The R3RS quote establishes good design principles, emphasizing minimalism and necessity.
+
+**Thoughtful abstraction choices**: Kernel-style operatives/applicatives, delimited continuations, and syntax objects as the foundation show sophisticated language design knowledge.
+
+**Pragmatic acknowledgments**: You recognize the tension between purity and practicality (e.g., RRB trees as tertiary despite being implementable as libraries).
+
+## Significant Issues
+
+**Tension with stated philosophy**: The document claims to follow Scheme's minimalist approach by "removing weaknesses," yet includes reader extensions, three types of compile-time abstractions, and extensive built-ins. This seems more like "piling features" than removing restrictions. Which language weaknesses do these features address?
+
+**Under-specified phase semantics**: The phases section raises more questions than it answers:
+
+- How do phase boundaries work precisely?
+- What happens when compile-time code has side effects?
+- How does phase annotation interact with type inference?
+- What's the execution model when a closure spans multiple phases?
+
+**Missing critical details**:
+
+- No syntax examples at all
+- No discussion of namespaces/scoping beyond "first-class environments"
+- How do operatives differ from applicatives in practice?
+- What's the memory/execution model?
+- No error handling philosophy beyond "exceptions/errors" as tertiary
+
+**Reader extensions seem premature**: These grant enormous power but violate minimalism and create serious tooling challenges (IDEs, formatters, linters all need to execute arbitrary user code). Why are they primary rather than a library feature?
+
+**Module system placement**: Relegating modules to "quaternary" seems problematic—they're typically essential for managing complexity in real programs. How do you envision organizing large codebases?
+
+## Specific Concerns
+
+**Equality model**: Borrowing Clojure's equality without context is insufficient. How does this interact with user-defined types? With gradual typing?
+
+**Numerical tower**: "Scheme-like" is vague—R5RS? R6RS? R7RS? These differ significantly.
+
+**Missing**: Semantics for mutation, concurrency model details, foreign function interface, literal syntax, comment syntax.
+
+## Recommendations (2)
+
+1. **Clarify the core weakness** you're addressing with a concrete example
+2. **Provide syntax examples** for each primary feature
+3. **Detail the phase model** with execution semantics
+4. **Justify reader extensions** or consider demoting them
+5. **Reconsider module system priority**
+6. **Add a semantics section** covering evaluation order, mutation, scope
+7. **Include a minimal example program** showing how features compose
+
+The document shows promise but needs more rigor to serve as an actual specification.

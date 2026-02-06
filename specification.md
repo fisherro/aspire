@@ -6,43 +6,60 @@ It seeks to follow the ideal espoused by the Scheme reports. To quote R3RS:
 
 > Programming languages should be designed not by piling feature on top of feature, but by removing the weaknesses and restrictions that make additional features appear necessary.
 
+Aspire is not meant, however, to be a purely theoretical and perfectly elegant language. For that would be a weakness itself. Aspire aims to be performant and minimize the costs of its abstractions.
+
+There is one weakness Aspire accepts, however. The trade-off of a highly extensible language is a proliferation of dialects.
+
 ## Primary features
 
+These are the "big ideas" of the language. The small set of powerful features that can be used to build other features.
+
 - Closures: Run-time abstractions
-  - Kernel-style operatives and applicatives
+  - Kernel-style operatives and applicatives created from operatives with a primitive `wrap` operator.
 - Macros: Compile-time abstractions
   - Closures that take and return syntax objects that have been designated for use as macros.
 - Reader extensions: Read-time abstraction
   - Closures that take strings and return objects that have been designated for use as reader extensions.
 - Delimited continuations: Composable framework for control mechanisms
 
-Note that closures are not exclusively evaluated at run-time. An implementation is allowed and encouraged to evaluate closures at compile-time when the data it depends on is available at compile time. Compile-time data will be available to run-time code having been initialized to the values they had at the end of the compile phase.
+A single abstraction method, closures, is provided along with mechanisms to use it at read-time, compile-time, and run-time.
+
+The notion of operative and applicatives from Kernel allows special forms to be written in the language. Unlike macros, operatives can selectively evaluate operands in the caller's environment or compute environments to evaluate in.
+
+Operatives, however, can be a poor substitute for macros as macros are easier to optimize.
+
+Conceptually, applicatives are simply operatives that evaluate their arguments. Implementation experience has convinced this author, however, that Kernel's approach of a primitive `wrap` operation to convert an operative into an applicative is a better approach that trying to make the `wrap` operation a library feature.
+
+Note that closures are not exclusively evaluated at run-time. An implementation is allowed and encouraged to evaluate closures at compile-time when the data it depends on is available at compile time. Compile-time data will be available to run-time code having been initialized to the values they had at the end of the compile phase. This removes the weakness of the programmer having to manually optimize such situations.
+
+Continuations provide the ability to implement powerful control mechanisms such as exceptions, coroutines, and coöperative multitasking as libraries. Delimited continuations address issues with undelimited continuations and provide composability so that different continuation-based mechanisms play well together.
 
 ## Secondary features
 
-Features which may need to be built-in for the implementation and use of primary features.
+Features which required for the primary features but which have applications beyond that.
 
-- First class environments
-- Symbols
 - A primitive evaluation applicative
+  - Required for the operative/applicative approach
+- First class environments
+  - Required for the operative/applicative approach
+- Syntax objects
+  - Necessary to enable hygienic syntax manipulations
+- Strings
+  - Required for reader extensions
 
 ## Tertiary features
 
-These are features that could be implemented using the primary features but which will be built-in for practical reasons.
+These are features that could conceptually be implemented using the primary features but which would be too inefficient or otherwise impractical.
 
 - Persistent List-like Data (PLD): These will be the basic data structure in the same way that lists are the basic data structure in Lisp. (Most likely RRB trees)
 - Numbers and arithmetic using a Scheme-like numerical tower
-- Strings and Booleans
-- Hash maps
 - Equality
   - Follow the Clojure model...
   - `=` for structural equality
   - `identical?` for optimized identity check
   - Possibly `==` for cross-type numeric comparisons
 - I/O primitives
-- Exceptions/errors
 - Concurrency primitives
-- Pattern matching
 
 ## Quaternary features
 
@@ -50,7 +67,14 @@ If these can be efficiently implemented as libraries, they do not need to be bui
 
 - Gradual static typing
 - Generic functions
+- Pattern matching
 - Modules
+
+## Syntax
+
+(Note: "Syntax" feels like it has too wide a meaning here. Perhaps this section should cover the `(combiner operands ...)` aspect to fully cover syntax?)
+
+The basic syntax will be S-expression based. Although the point or reader extensions is to enable support for other syntaxes.
 
 ## Phases
 
@@ -61,6 +85,8 @@ Aspire programs potentially move through three phases. e.g.
 - Run time
 
 Things are not entirely straight-forward, however. Read-time can require reading, compiling, and running reader extensions. Compile-time can require reading, compiling, and running macros. Run-time can do JIT compilation.
+
+While I/O at read or compile-time is allowable, the programmer should have to be explicit when I/O is expected to happen in the compilation environment.
 
 ## Closure phase annotations
 

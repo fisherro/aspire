@@ -81,8 +81,19 @@ These are features that could conceptually be implemented using the primary feat
   - There's no real benefit to deferring all Booleans to user code.
   - The big downside of no built-in Boolean type is inconsistency and confusion about such a ubiquitous concept. The majority of control structures should agree on true/false/truthy/falsy for the sake of programmer sanity.
   - Built-in Booleans do not prevent user-specified true/false/truthy/falsy concepts from being used where appropriate in special circumstances.
+- Mutable boxes
+  - Values in Aspire are immutable.
+  - Generally, name/value bindings in environments are also immutable.
+  - A name in an environment, however, can be bound to mutable box. The box holds a value, and the value of the mutable box can be changed.
+  - While there are benefits to a language with no mutablility, it forces programs into awkward workarounds. Limited mutability allows more straight-forward implementation of some computations without opening the door to the downsides of unlimited mutability.
 - Hash maps
-  - Environments are typically implemented using hash maps internally. Since the implementation likely already contains a hash map implementation, it makes sense to expose it.
+  - Maps are a ubiquitous programming concept, and the O(1) lookup of hash maps is essential to practical programming.
+  - Environments are typically implemented using hash maps internally. Since the implementation likely already contains a hash map implementation, it makes sense to expose it for general use.
+
+Possible tertiary features to consider:
+
+- Nil/null
+- Characters
 
 ## Potential library features
 

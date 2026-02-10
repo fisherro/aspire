@@ -67,25 +67,24 @@ Features which required for the primary features but which have applications bey
 These are features that could conceptually be implemented using the primary features but which would be too inefficient or otherwise impractical.
 
 - Numbers and arithmetic using a Scheme-like numerical tower
+  - Church numerals or other workarounds perform poorly and fail to take advantage of the numeric support built nearly every processor available.
 - Equality
   - Follow the Clojure model...
   - `=` for structural equality
   - `identical?` for optimized identity check
   - Possibly `==` for cross-type numeric comparisons
-- I/O primitives
-- Concurrency primitives
 - Booleans
 - Hash maps
   - Environments are typically implemented using hash maps internally. Since the implementation likely already contains a hash map implementation, it makes sense to expose it.
 
-TODO: Add justifications
+TODO: Add justifications for equality and Booleans
 
-TODO: Replace I/O and concurrency with FFI or explain why they aren't.
+## Potential library features
 
-## Quaternary features
+Features that should be buildable as Agile libraries (with the use of FFI when necessary). This specification will not cover implementations of these features. If anything here can not be efficiently implemented as a library under this specification, the specification should be improved to remove that weakness.
 
-If these can be efficiently implemented as libraries, they do not need to be built-in features.
-
+- I/O primitives
+- Concurrency primitives
 - Error/exceptions
 - Pattern matching
 - Generic functions
@@ -97,9 +96,9 @@ If these can be efficiently implemented as libraries, they do not need to be bui
 
 ## Syntax
 
-(TODO: "Syntax" feels like it has too wide a meaning here. Perhaps this section should cover the `(combiner operands ...)` aspect to fully cover syntax?)
-
 The native syntax will be S-expression based. Although the point or reader extensions is to enable support for other syntaxes to make them as close to native as possible.
+
+Agile expressions will use the Lisp-style of either *atom* or `(`*operation-expression* *operand-expressions* *...*`)`. When the latter is evaluated, the *operator-expression* is evaluated. If it evaluates to an operative, then the *operand-expressions* are passed to the operative unevaluated along with the dynamic environment. If it is an applicative, the *operand-expressions* are evaluated before being passed.
 
 ## Phases
 

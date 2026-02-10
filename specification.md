@@ -70,9 +70,13 @@ These are features that could conceptually be implemented using the primary feat
   - Church numerals or other workarounds perform poorly and fail to take advantage of the numeric support built nearly every processor available.
 - Equality
   - Follow the Clojure model...
-  - `=` for structural equality
-  - `identical?` for optimized identity check
-  - Possibly `==` for cross-type numeric comparisons
+    - `=` for structural equality
+    - `identical?` for optimized identity check
+    - Possibly `==` for cross-type numeric comparisons
+  - Equality testing is a ubiquitous, critical, and performance sensitive feature.
+    - The `identical?` predicate can be implemented as a simple pointer comparison.
+    - The `=` predicate benefits from type-specific optimizations.
+    - Structural equality benefits from implementation-level optimizations.
 - Booleans
 - Hash maps
   - Environments are typically implemented using hash maps internally. Since the implementation likely already contains a hash map implementation, it makes sense to expose it.

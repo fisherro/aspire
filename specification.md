@@ -97,13 +97,13 @@ Possible tertiary features to consider:
 
 ## Potential library features
 
-Features that should be buildable as Agile libraries (with the use of FFI when necessary). This specification will not cover implementations of these features. If anything here can not be efficiently implemented as a library under this specification, the specification should be improved to remove that weakness.
+Features that should be buildable as Aspire libraries (with the use of FFI when necessary). This specification will not cover implementations of these features. If anything here can not be efficiently implemented as a library under this specification, the specification should be improved to remove that weakness.
 
-- I/O primitives
-- Concurrency primitives
-- Error/exceptions
-- Pattern matching
-- Generic functions
+- I/O primitives (via FFI)
+- Concurrency primitives (via FFI)
+- Error/exceptions (via continuations)
+- Pattern matching (via macros)
+- Generic functions (via operatives/macros)
 - Modules
   - First-class environments, macros, and compile-time I/O should make modules implementable as a library.
   - There may be a need for some minimal module-like functionality for bootstrapping.
@@ -114,7 +114,7 @@ Features that should be buildable as Agile libraries (with the use of FFI when n
 
 The native syntax will be S-expression based. Although the point or reader extensions is to enable support for other syntaxes to make them as close to native as possible.
 
-Agile expressions will use the Lisp-style of either *atom* or `(`*operation-expression* *operand-expressions* *...*`)`. When the latter is evaluated, the *operator-expression* is evaluated. If it evaluates to an operative, then the *operand-expressions* are passed to the operative unevaluated along with the dynamic environment. If it is an applicative, the *operand-expressions* are evaluated before being passed.
+Aspire expressions will use the Lisp-style of either *atom* or `(`*operation-expression* *operand-expressions* *...*`)`. When the latter is evaluated, the *operator-expression* is evaluated. If it evaluates to an operative, then the *operand-expressions* are passed to the operative unevaluated along with the dynamic environment. If it is an applicative, the *operand-expressions* are evaluated before being passed.
 
 ## Phases
 

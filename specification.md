@@ -78,10 +78,11 @@ These are features that could conceptually be implemented using the primary feat
     - The `=` predicate benefits from type-specific optimizations.
     - Structural equality benefits from implementation-level optimizations.
 - Booleans
+  - There's no real benefit to deferring all Booleans to user code.
+  - The big downside of no built-in Boolean type is inconsistency and confusion about such a ubiquitous concept. The majority of control structures should agree on true/false/truthy/falsy for the sake of programmer sanity.
+  - Built-in Booleans do not prevent user-specified true/false/truthy/falsy concepts from being used where appropriate in special circumstances.
 - Hash maps
   - Environments are typically implemented using hash maps internally. Since the implementation likely already contains a hash map implementation, it makes sense to expose it.
-
-TODO: Add justifications for equality and Booleans
 
 ## Potential library features
 

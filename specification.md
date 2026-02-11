@@ -14,6 +14,16 @@ Aspire is not meant, however, to be a purely theoretical and perfectly elegant l
 
 There is one weakness Aspire accepts, however. The trade-off of a highly extensible language is a proliferation of dialects.
 
+## Requirements
+
+Aspire must be...
+
+- Memory-safe
+- Suitable for general-purpose use
+- Suitable for systems programming
+
+Aspire does not have built-in concurrency, so concurrency safety depends upon libraries that implement it.
+
 ## Primary features
 
 These are the "big ideas" of the language. The small set of powerful features that can be used to build other features.

@@ -4,6 +4,10 @@ TODO: Examples throughout
 
 QUESTION: Could this be summarized as "Kernel plus macros, reader extensions, and RRB trees"?
 
+THOUGHT: Should impure function be required to be marked as impure?
+
+THOUGHT: Have a general sequence type that gets optimized into a string behind the scenes when possible? The way a number can seamlessly go from fixnum to bignum and back, a sequence can go from string to sequence and back without the programmer having to (in most cases) treat them as different types.
+
 This is a specification for a language that aspires to be my ideal language.
 
 It seeks to follow the ideal espoused by the Scheme reports. To quote R3RS:

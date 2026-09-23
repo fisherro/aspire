@@ -47,7 +47,7 @@ The notion of operative and applicatives from Kernel allows special forms to be 
 
 Operatives, however, can be a poor substitute for macros as macros are easier to optimize.
 
-Conceptually, applicatives are simply operatives that evaluate their arguments. Implementation experience has convinced this author, however, that Kernel's approach of a primitive `wrap` operation to convert an operative into an applicative is a better approach that trying to make the `wrap` operation a library feature.
+Conceptually, applicatives are simply operatives that evaluate their arguments. Implementation experience has convinced this author, however, that Kernel's approach of a primitive `wrap` operation to convert an operative into an applicative is a better approach than trying to make the `wrap` operation a library feature.
 
 Note that closures are not exclusively evaluated at run-time. An implementation is allowed and encouraged to evaluate closures at compile-time when the data it depends on is available at compile time. Compile-time data will be available to run-time code having been initialized to the values they had at the end of the compile phase. This removes the weakness of the programmer having to manually optimize such situations.
 

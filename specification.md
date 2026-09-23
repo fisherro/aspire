@@ -81,7 +81,7 @@ Features which required for the primary features but which have applications bey
 These are features that could conceptually be implemented using the primary features but which would be too inefficient or otherwise impractical.
 
 - Numbers and arithmetic using a Scheme-like numerical tower
-  - Church numerals or other workarounds perform poorly and fail to take advantage of the numeric support built nearly every processor available.
+  - Church numerals or other workarounds perform poorly and fail to take advantage of the numeric support built into nearly every processor available.
 - Equality
   - Follow the Clojure model...
     - `=` for structural equality

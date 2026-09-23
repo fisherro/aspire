@@ -103,6 +103,7 @@ These are features that could conceptually be implemented using the primary feat
 - Hash maps
   - Maps are a ubiquitous programming concept, and the O(1) lookup of hash maps is essential to practical programming.
   - Environments are typically implemented using hash maps internally. Since the implementation likely already contains a hash map implementation, it makes sense to expose it for general use.
+  - Perhaps hash array mapped tries would be a good implementation?
 
 Possible tertiary features to consider:
 

@@ -17,3 +17,5 @@ worth considering.
 
 What qualities of a systems language do I
 care about and which can I leave out?
+
+Look into Otus Lisp instant and lazy macros.
